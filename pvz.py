@@ -68,7 +68,7 @@ def game(stdscr):
     draw_map(stdscr, rows, cols, grid)
     stdscr.refresh()
 
-    play_sound("in.mp3", PARAMETRE["bruitage"])
+    play_sound("in.wav", PARAMETRE["bruitage"])
 
     while True:
 
@@ -85,7 +85,7 @@ def game(stdscr):
 
                 if x > 0 and grid[y][x-1] == "F":
                     grid[y][x-1] = " "
-                    play_sound("died.mp3", PARAMETRE["bruitage"])
+                    play_sound("died.wav", PARAMETRE["bruitage"])
                     stdscr.addstr(y, (x-1)*2 + 3, "_")
                     stdscr.addstr(y, (x)*2 + 3, "_")
                     continue
@@ -93,8 +93,8 @@ def game(stdscr):
                 if x > 0:
                     new_zombies.append([y, x-1])
                 else:
-                    play_sound("end.mp3", PARAMETRE["bruitage"])
-                    play_sound("end2.mp3", PARAMETRE["bruitage"])
+                    play_sound("end.wav", PARAMETRE["bruitage"])
+                    play_sound("end2.wav", PARAMETRE["bruitage"])
                     stdscr.addstr(rows + 4, 0, "GAME OVER", curses.color_pair(FIREWALL))
                     stdscr.addstr(rows + 5, 0, "Le serveur s’est fait DDoS et a incendié tout le bâtiment de l’entreprise.", curses.color_pair(FIREWALL))
                     
@@ -116,7 +116,7 @@ def game(stdscr):
 
 
         if key in special_map and soleil >= PARAMETRE["prix"]:
-            play_sound("click.mp3", PARAMETRE["bruitage"]) # pq ping autant ..
+            play_sound("click.wav", PARAMETRE["bruitage"]) # pq ping autant ..
             row = special_map[key]
             for x in range(cols):
                 if grid[row][x] != "F":

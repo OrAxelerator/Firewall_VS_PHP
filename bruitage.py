@@ -10,4 +10,8 @@ def play_sound(path, is_audio):
         elif sys.platform == "darwin":# macOS
             subprocess.Popen(["afplay", path])
         else:# Linux
-            subprocess.Popen(["aplay", path])
+            subprocess.Popen(
+                ["aplay", path],
+	            stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )

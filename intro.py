@@ -19,13 +19,13 @@ input()
 print("Après 5h à ne rien faire car le firewall s’occupe de tout, vous entendez une alerte...")
 input()
 
-play_sound("error.mp3", True)
+play_sound("error.wav", True)
 
 print("ERROR: FIREWALL POWER DECREASED BY THE NUMBER OF PHP REQUESTS.")
 input()
 
 print("FIREWALL: DDOS DETECTED.\nKeep the power up and stop PHP requests by temporarily locking ports.")
-play_sound("error.mp3", True)
+play_sound("error.wav", True)
 input()
 
 print("To keep power, mine Bitcoin by mentally solving complex math.")
