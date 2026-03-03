@@ -19,3 +19,7 @@ linux/Macos : python3 / python + intro.py
 windows : py / python + intro.py
 
 > ce jeux utilise des bruitages 🎧 !
+
+> [!IMPORTANT]
+>
+> Plusieur parametre peuvent etre changé en modifiant valeur du dico PARAMETRE au début de ```pvz.py```

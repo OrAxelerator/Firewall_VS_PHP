@@ -10,7 +10,8 @@ PARAMETRE = {
     "soleil":35, # power de départ
     "app_zombie":40, # vitesse d'apparition
     "bruitage":True, 
-    "bonus":25 # combien de power par calcule
+    "bonus":25, # combien de power par calcule
+    "prix":50
 
 }
 
@@ -82,7 +83,7 @@ def game(stdscr):
             for z in zombies:
                 y, x = z
 
-                if x > 0 and grid[y][x-1] == "P":
+                if x > 0 and grid[y][x-1] == "F":
                     grid[y][x-1] = " "
                     play_sound("died.mp3", PARAMETRE["bruitage"])
                     stdscr.addstr(y, (x-1)*2 + 3, "_")
@@ -95,7 +96,7 @@ def game(stdscr):
                     play_sound("end.mp3", PARAMETRE["bruitage"])
                     play_sound("end2.mp3", PARAMETRE["bruitage"])
                     stdscr.addstr(rows + 4, 0, "GAME OVER", curses.color_pair(FIREWALL))
-                    stdscr.addstr(rows + 5, 0, "Le serveur c'est fait DDOS et a incendié tout le batiment de l'entreprise", curses.color_pair(FIREWALL))
+                    stdscr.addstr(rows + 5, 0, "Le serveur s’est fait DDoS et a incendié tout le bâtiment de l’entreprise.", curses.color_pair(FIREWALL))
                     
                     stdscr.refresh()
                     stdscr.nodelay(False)
@@ -109,19 +110,19 @@ def game(stdscr):
 
         for y, x in zombies:
             if x >= 0:
-                stdscr.addstr(y, x*2 + 3, "Z", curses.color_pair(REQUETE))
+                stdscr.addstr(y, x*2 + 3, "P", curses.color_pair(REQUETE))
 
         key = stdscr.getch()
 
 
-        if key in special_map and soleil >= 50:
-            play_sound("click.mp3", PARAMETRE["bruitage"])
+        if key in special_map and soleil >= PARAMETRE["prix"]:
+            play_sound("click.mp3", PARAMETRE["bruitage"]) # pq ping autant ..
             row = special_map[key]
             for x in range(cols):
-                if grid[row][x] != "P":
-                    grid[row][x] = "P"
-                    soleil -= 50
-                    stdscr.addstr(row, x*2 + 3, "P", curses.color_pair(FIREWALL))
+                if grid[row][x] != "F":
+                    grid[row][x] = "F"
+                    soleil -= PARAMETRE["prix"]
+                    stdscr.addstr(row, x*2 + 3, "F", curses.color_pair(FIREWALL))
                     break
         if ord('0') <= key <= ord('9'):
             if len(answer) < 2:
